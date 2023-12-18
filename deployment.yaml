@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-project-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app-project
+  template:
+    metadata:
+      labels:
+        app: app-project
+    spec:
+      containers:
+        - name: app-project
+          image: dhamodharreddy500/app-project-pipeline:1.0.0-9
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
